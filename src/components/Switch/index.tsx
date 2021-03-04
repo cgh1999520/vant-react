@@ -1,7 +1,5 @@
 import React, { MouseEvent } from 'react';
-
 import classnames from '../../utils/classNames';
-
 import './index.scss';
 
 export interface IProps {

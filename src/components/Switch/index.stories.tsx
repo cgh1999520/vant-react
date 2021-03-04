@@ -20,12 +20,11 @@ export const BasicUsage = () => {
 
 export const DisableUsage = () => {
   const [isActive, setIsActive] = useState(false);
-  const isDisable = true;
 
   return (
     <div className='storybook__container'>
       <Switch
-        disable={isDisable}
+        disable
         onChange={(active) => setIsActive(active)}
         active={isActive}
       />
@@ -35,12 +34,11 @@ export const DisableUsage = () => {
 
 export const CustomizeSizeUsage = () => {
   const [isActive, setIsActive] = useState(false);
-  const size = 40;
 
   return (
     <div className='storybook__container'>
       <Switch
-        size={size}
+        size={40}
         onChange={(active) => setIsActive(active)}
         active={isActive}
       />
@@ -52,12 +50,38 @@ export const CustomizeColorUsage = () => {
   const [isActive, setIsActive] = useState(false);
   const onChange = (active: any) => {
     setIsActive(active);
-    console.log('now status：' + active);
+    console.log('current status：' + active);
   };
 
   return (
     <div className='storybook__container'>
       <Switch
+        onChange={onChange}
+        activeColor='red'
+        inactiveColor='blue'
+        active={isActive}
+      />
+    </div>
+  );
+};
+
+export const AsyncUsage = () => {
+  const [isActive, setIsActive] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  const onChange = (active: any) => {
+    setLoading(true);
+    setTimeout(() => {
+      setIsActive(active);
+      setLoading(false);
+      console.log('current status：' + active);
+    }, 3 * 1000);
+  };
+
+  return (
+    <div className='storybook__container'>
+      <Switch
+        loading={isLoading}
         onChange={onChange}
         activeColor='red'
         inactiveColor='blue'
