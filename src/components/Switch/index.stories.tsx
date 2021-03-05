@@ -32,6 +32,20 @@ export const DisableUsage = () => {
   );
 };
 
+export const LoadingUsage = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  return (
+    <div className='storybook__container'>
+      <Switch
+        loading
+        onChange={(active) => setIsActive(active)}
+        active={isActive}
+      />
+    </div>
+  );
+};
+
 export const CustomizeSizeUsage = () => {
   const [isActive, setIsActive] = useState(false);
 

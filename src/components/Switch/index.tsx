@@ -1,6 +1,7 @@
 import React, { MouseEvent } from 'react';
 import classnames from '../../utils/classNames';
 import './index.scss';
+import CircularLoading from '../../assets/icons/loaders/Circular';
 
 export interface IProps {
   active: any; // 	开关选中状态 [Switch on state]
@@ -32,14 +33,16 @@ const Switch = ({
   onChange
 }: IProps) => {
   const isActive = active === activeValue;
+  const currentColor: string = isActive ? activeColor : inactiveColor;
 
-  // 加载渲染 Loading Render
   const loadingRender = () => {
-    // TODO: Load component is not developed
-    return loading ? <span /> : '';
+    return loading ? (
+      <CircularLoading className='loading__spinner' color={activeColor} />
+    ) : (
+      ''
+    );
   };
 
-  // 点击事件 Click Event
   const handleClick = (event: MouseEvent): void => {
     onClick && onClick(event);
 
@@ -47,10 +50,6 @@ const Switch = ({
     onChange && onChange(isActive ? inactiveValue : activeValue);
   };
 
-  // 当前颜色 Current Color
-  const currentColor = isActive ? activeColor : inactiveColor;
-
-  // 开关Props  Switch Props
   const switchProps = {
     onClick: handleClick,
     className: classnames(baseClassName, [
@@ -59,7 +58,7 @@ const Switch = ({
       { loading }
     ]),
     style: {
-      fontSize: typeof size === 'number' ? size + 'px' : size,
+      fontSize: size === 'number' ? size + 'px' : size,
       backgroundColor: currentColor
     }
   };

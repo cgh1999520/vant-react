@@ -16,6 +16,24 @@ $baseClass: 'vant-switch';
   // 开关加载中  switch loading
   &__loading {
     cursor: default;
+
+    .#{$baseClass}__node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    // Todo: wait for loading component
+    .circular-loading {
+      width: 50%!important;
+      height: 50%!important;
+      font-size: 0;
+
+      .loading__spinner {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   // 开关禁用  switch disable
